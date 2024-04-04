@@ -230,6 +230,7 @@ const app_controller_1 = __webpack_require__(7);
 const app_service_1 = __webpack_require__(8);
 const typeorm_1 = __webpack_require__(9);
 const users_module_1 = __webpack_require__(10);
+const User_1 = __webpack_require__(14);
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -243,7 +244,7 @@ exports.AppModule = AppModule = __decorate([
                 username: 'testuser',
                 password: '',
                 database: 'nestjs_mysql_tutorial',
-                entities: [],
+                entities: [User_1.User],
                 synchronize: true,
             }),
             users_module_1.UsersModule,
@@ -634,7 +635,7 @@ exports.UpdateUserDto = UpdateUserDto;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("735b07d1ee59b5138003")
+/******/ 		__webpack_require__.h = () => ("38853a6b4bfe8776970a")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
