@@ -489,6 +489,7 @@ let UsersService = class UsersService {
         this.userRepository = userRepository;
     }
     findUsers() {
+        return this.userRepository.find();
     }
     createUser(userDetails) {
         const newUser = this.userRepository.create({
@@ -496,6 +497,12 @@ let UsersService = class UsersService {
             createAt: new Date()
         });
         return this.userRepository.save(newUser);
+    }
+    updateUser(id, updateUserDetails) {
+        return this.userRepository.update({ id }, { ...updateUserDetails });
+    }
+    deleteUser(id) {
+        return this.userRepository.delete({ id });
     }
 };
 exports.UsersService = UsersService;
@@ -635,7 +642,7 @@ exports.UpdateUserDto = UpdateUserDto;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("38853a6b4bfe8776970a")
+/******/ 		__webpack_require__.h = () => ("c2de510b38908011f20f")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
