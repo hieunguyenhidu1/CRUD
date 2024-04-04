@@ -229,7 +229,7 @@ const common_1 = __webpack_require__(6);
 const app_controller_1 = __webpack_require__(7);
 const app_service_1 = __webpack_require__(8);
 const typeorm_1 = __webpack_require__(9);
-const users_module_ts_module_1 = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module './users.module.ts/users.module.ts.module'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+const users_module_1 = __webpack_require__(10);
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -246,7 +246,7 @@ exports.AppModule = AppModule = __decorate([
                 entities: [],
                 synchronize: true,
             }),
-            users_module_ts_module_1.UsersModuleTsModule,
+            users_module_1.UsersModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
@@ -335,6 +335,243 @@ exports.AppService = AppService = __decorate([
 "use strict";
 module.exports = require("@nestjs/typeorm");
 
+/***/ }),
+/* 10 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UsersModule = void 0;
+const common_1 = __webpack_require__(6);
+const users_controller_1 = __webpack_require__(11);
+const users_service_1 = __webpack_require__(13);
+const typeorm_1 = __webpack_require__(9);
+const User_1 = __webpack_require__(14);
+let UsersModule = class UsersModule {
+};
+exports.UsersModule = UsersModule;
+exports.UsersModule = UsersModule = __decorate([
+    (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([User_1.User])],
+        controllers: [users_controller_1.UsersController],
+        providers: [users_service_1.UsersService],
+    })
+], UsersModule);
+;
+
+
+/***/ }),
+/* 11 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b, _c;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UsersController = void 0;
+const common_1 = __webpack_require__(6);
+const CreateUser_dto_1 = __webpack_require__(12);
+const users_service_1 = __webpack_require__(13);
+const UpdateUser_dto_1 = __webpack_require__(16);
+let UsersController = class UsersController {
+    constructor(usersService) {
+        this.usersService = usersService;
+    }
+    async getUsers() {
+        const users = await this.usersService.findUsers();
+        return users;
+    }
+    createUsers(createUserDto) {
+        return this.usersService.createUser(createUserDto);
+    }
+    async updateUserById(id, updateUserDto) {
+        await this.usersService.updateUser(id, updateUserDto);
+    }
+    async deleteUserById(id) {
+        await this.usersService.deleteUser(id);
+    }
+};
+exports.UsersController = UsersController;
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getUsers", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_b = typeof CreateUser_dto_1.CreateUserDto !== "undefined" && CreateUser_dto_1.CreateUserDto) === "function" ? _b : Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createUsers", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, typeof (_c = typeof UpdateUser_dto_1.UpdateUserDto !== "undefined" && UpdateUser_dto_1.UpdateUserDto) === "function" ? _c : Object]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "updateUserById", null);
+__decorate([
+    (0, common_1.Delete)(),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "deleteUserById", null);
+exports.UsersController = UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    __metadata("design:paramtypes", [typeof (_a = typeof users_service_1.UsersService !== "undefined" && users_service_1.UsersService) === "function" ? _a : Object])
+], UsersController);
+
+
+/***/ }),
+/* 12 */
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CreateUserDto = void 0;
+class CreateUserDto {
+}
+exports.CreateUserDto = CreateUserDto;
+
+
+/***/ }),
+/* 13 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UsersService = void 0;
+const common_1 = __webpack_require__(6);
+const typeorm_1 = __webpack_require__(9);
+const User_1 = __webpack_require__(14);
+const typeorm_2 = __webpack_require__(15);
+let UsersService = class UsersService {
+    constructor(userRepository) {
+        this.userRepository = userRepository;
+    }
+    findUsers() {
+    }
+    createUser(userDetails) {
+        const newUser = this.userRepository.create({
+            ...userDetails,
+            createAt: new Date()
+        });
+        return this.userRepository.save(newUser);
+    }
+};
+exports.UsersService = UsersService;
+exports.UsersService = UsersService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(User_1.User)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object])
+], UsersService);
+
+
+/***/ }),
+/* 14 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.User = void 0;
+const typeorm_1 = __webpack_require__(15);
+let User = class User extends typeorm_1.BaseEntity {
+};
+exports.User = User;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    __metadata("design:type", Number)
+], User.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ unique: true }),
+    __metadata("design:type", String)
+], User.prototype, "username", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], User.prototype, "createAt", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "authStrategy", void 0);
+exports.User = User = __decorate([
+    (0, typeorm_1.Entity)({ name: 'users' })
+], User);
+
+
+/***/ }),
+/* 15 */
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("typeorm");
+
+/***/ }),
+/* 16 */
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UpdateUserDto = void 0;
+class UpdateUserDto {
+}
+exports.UpdateUserDto = UpdateUserDto;
+
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -397,7 +634,7 @@ module.exports = require("@nestjs/typeorm");
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("5f182ca96f403782ad9e")
+/******/ 		__webpack_require__.h = () => ("735b07d1ee59b5138003")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
