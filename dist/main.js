@@ -434,7 +434,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "updateUserById", null);
 __decorate([
-    (0, common_1.Delete)(),
+    (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -642,7 +642,7 @@ exports.UpdateUserDto = UpdateUserDto;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("c2de510b38908011f20f")
+/******/ 		__webpack_require__.h = () => ("f75b8f9d1a0c8f477dc8")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
